@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Andrea & Elenia - 05.07.2026</title>
+    <title>Andrea ed Elenia - 05.07.2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -127,9 +127,30 @@
             padding: 18px; cursor: pointer; text-transform: uppercase; letter-spacing: 2px;
         }
 
+        .btn-photo {
+            display: inline-block;
+            background-color: var(--oro-antico);
+            color: white;
+            text-decoration: none;
+            padding: 15px 25px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-photo:hover {
+            background-color: var(--verde-salvia);
+            transform: translateY(-2px);
+        }
+
         /* --- OTTIMIZZAZIONE MOBILE AGGRESSIVA --- */
         /* --- OTTIMIZZAZIONE SPECIFICA PER MOBILE --- */
         @media (max-width: 600px) {
+            .btn-photo { width: 100%; box-sizing: border-box; }
+            
             header {
                 height: 75vh;
                 padding-bottom: 12vh; /* Alza la scritta per allontanarla dal bordo inferiore */
@@ -154,17 +175,33 @@
 
 <div class="main-container">
     <header>
-        <h1>Andrea & Elenia</h1>
+        <h1>Andrea ed Elenia</h1>
         <div class="data-header">05 Luglio 2026</div>
     </header>
 
     <section id="sogno">
         <div class="card">
             <h2>Il Nostro Sogno</h2>
-            <p>Siamo felici di invitarvi a condividere con noi la felicità di questo giorno. Vi preghiamo di indicarci la vostra presenza ed eventuali allergeni, noi non vediamo l'ora!</p>
+            <p>Siamo felici di invitarvi a condividere con noi la felicità di questo giorno. Vi preghiamo di indicarci la vostra presenza ed eventuali allergeni, entro e non oltre il 5 Giugno, noi non vediamo l'ora!</p>
         </div>
     </section>
 
+    <section id="Photo">
+        <div class="card">
+            <h2>I vostri scatti</h2>
+            <p>Aiutateci a racchiudere ogni istante di questa giornata. Caricate qui le foto e i video che scatterete durante la cerimonia e il ricevimento!</p>
+            
+            <div class="qr-container" style="margin: 25px 0;">
+                <img src="qrcode_AndreaEdElenia.png" alt="QR Code Foto" style="max-width: 200px; border: 5px solid white; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-radius: 10px;">
+                <p style="font-size: 0.8rem; margin-top: 10px; font-style: italic;">Inquadra il QR Code dal tuo PC</p>
+            </div>
+
+            <a href="https://photos.app.goo.gl/vkkZznJUfsxtBy5o7" target="_blank" class="btn-photo">
+                Carica Foto / Video
+            </a>
+        </div>
+    </section>
+    
     <section id="location">
         <div class="card">
             <h2>La Location</h2>
@@ -189,7 +226,7 @@
                 </select>
             
                 <label>Note, Allergie o Intolleranze</label>
-                <textarea name="Note_e_Allergie" rows="3" placeholder="Es. 1 Celiaco, 1 Vegetariano..."></textarea>
+                <textarea name="Note_e_Allergie" rows="3" placeholder="Es. 1 Celiaco, 1 Vegetariano, 1 Intollerante al Lattosio..."></textarea>
                 <input type="text" name="_gotcha" style="display:none">
                 <button type="submit" id="submit-button">Invia Conferma</button>
             </form>
