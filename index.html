@@ -146,10 +146,43 @@
             transform: translateY(-2px);
         }
 
+        /* Stile per la griglia della location */
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 colonne uguali */
+            gap: 15px; /* Spazio tra le foto */
+            margin: 25px 0;
+            width: 100%;
+        }
+
+        .grid-item {
+            aspect-ratio: 1 / 1; /* Forza il quadrato perfetto */
+            overflow: hidden;
+            border-radius: 5px; /* Angoli leggermente arrotondati */
+            border: 2px solid white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Riempie il quadrato senza distorcere l'immagine */
+            transition: transform 0.4s ease;
+            display: block;
+        }
+
+        .grid-item:hover img {
+            transform: scale(1.1); /* Effetto zoom al passaggio del mouse */
+        }
+
         /* --- OTTIMIZZAZIONE MOBILE AGGRESSIVA --- */
         /* --- OTTIMIZZAZIONE SPECIFICA PER MOBILE --- */
         @media (max-width: 600px) {
             .btn-photo { width: 100%; box-sizing: border-box; }
+
+            .location-grid {
+                gap: 8px; 
+            }
             
             header {
                 height: 75vh;
@@ -206,6 +239,18 @@
         <div class="card">
             <h2>La Location</h2>
             <h3>Masseria Mavugliola</h3>
+            <div class="location-grid">
+                <div class="grid-item">
+                    <img src="masseria1.jpg" alt="Scorcio Masseria 1">
+                </div>
+                <div class="grid-item">
+                    <img src="masseria2.jpg" alt="Scorcio Masseria 2">
+                </div>
+                <div class="grid-item">
+                    <img src="masseria3.jpg" alt="Scorcio Masseria 3">
+                </div>
+            </div>
+            
             <p>S.c 35, Contrada Mavugliola, 156<br>Locorotondo (BA)</p>
             <p>Ore 18:00</p>
             <a href="https://maps.google.com/?q=Masseria+Mavugliola+Locorotondo" target="_blank" style="color: var(--oro-antico); text-decoration: none; border-bottom: 1px solid;">Apri Mappa</a>
