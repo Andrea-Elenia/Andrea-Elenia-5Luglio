@@ -181,26 +181,75 @@
     <section id="rsvp">
         <div class="card">
             <h2>Conferma</h2>
-            <form action="https://formspree.io/f/mreyknza" method="POST">
+            <form id="my-form" action="https://formspree.io/f/mreyknza" method="POST">
+                
                 <label>Nome e Cognome</label>
-                <input type="text" placeholder="Es. Andrea e Elenia" required>
+                <input type="text" name="Nome_Invitati" placeholder="Es. Andrea e Elenia" required>
                 
                 <label>Partecipazione</label>
-                <select>
-                    <option>Sì, verremo a festeggiare!</option>
-                    <option>Purtroppo non potremo esserci</option>
+                <select name="Risposta">
+                    <option value="Sì">Sì, verremo a festeggiare!</option>
+                    <option value="No">Purtroppo non potremo esserci</option>
                 </select>
-
+            
                 <label>Note, Allergie o Intolleranze</label>
-                <textarea rows="3" placeholder="Es. 1 Celiaco, 1 Vegetariano..."></textarea>
+                <textarea name="Note_e_Allergie" rows="3" placeholder="Es. 1 Celiaco, 1 Vegetariano..."></textarea>
 
                 <input type="hidden" name="_next" value="https://andrea-elenia.github.io/Andrea-Elenia-5Luglio/">
+
+                <input type="text" name="_gotcha" style="display:none">
                 
-                <button type="submit">Invia Conferma</button>
+                <button type="submit" id="submit-button">Invia Conferma</button>
             </form>
+
+            <div id="success-message" style="display:none; padding: 20px;">
+                <h3 style="font-family: 'Monsieur La Doulaise', cursive; font-size: 3rem; color: var(--oro-antico);">Grazie di cuore!</h3>
+                <p>La vostra risposta è stata registrata correttamente.</p>
+            </div>
         </div>
     </section>
 
+    <script>
+          var form = document.getElementById("my-form");
+          
+          async function handleSubmit(event) {
+            event.preventDefault();
+            var status = document.getElementById("success-message");
+            var button = document.getElementById("submit-button");
+            var data = new FormData(event.target);
+            
+            button.innerHTML = "Invio in corso...";
+            button.disabled = true;
+        
+            fetch(event.target.action, {
+              method: form.method,
+              body: data,
+              headers: {
+                  'Accept': 'application/json'
+              }
+            }).then(response => {
+              if (response.ok) {
+                form.style.display = "none"; // Nasconde il modulo
+                status.style.display = "block"; // Mostra il messaggio di successo
+              } else {
+                response.json().then(data => {
+                  if (Object.hasOwn(data, 'errors')) {
+                    alert(data["errors"].map(error => error["message"]).join(", "));
+                  } else {
+                    alert("Oops! C'è stato un problema nell'invio. Riprova più tardi.");
+                  }
+                })
+              }
+            }).catch(error => {
+              alert("Errore di connessione. Controlla la tua rete.");
+            }).finally(() => {
+                button.innerHTML = "Invia Conferma";
+                button.disabled = false;
+            });
+          }
+          form.addEventListener("submit", handleSubmit)
+    </script>
+    
     <footer>
         A & E | 5 Luglio 2026.
     </footer>
@@ -208,6 +257,7 @@
 </div>
 </body>
 </html>
+
 
 
 
