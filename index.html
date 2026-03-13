@@ -59,32 +59,51 @@
             align-items: center;
             padding-bottom: 10vh;
         }
-
+        
         h1 {
             font-family: 'Monsieur La Doulaise', cursive;
             font-weight: 500;
             margin: 0;
             color: var(--oro-antico);
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
             line-height: 1.2;
+            white-space: nowrap;
+            overflow: visible;
 
-            /* --- IL FIX PER L'UNICA RIGA --- */
-            white-space: nowrap;      /* Impedisce categoricamente di andare a capo */
-            overflow: visible;        /* Assicura che i riccioli del font non vengano tagliati */
+            /* --- MIGLIORAMENTO VISIBILITÀ --- */
+            /* Creiamo un'aura bianca intorno al testo per renderlo leggibile ovunque */
+            text-shadow: 
+                0 0 15px rgba(255, 255, 255, 0.8), 
+                0 0 5px rgba(255, 255, 255, 0.5),
+                1px 1px 2px rgba(139, 115, 85, 0.2); 
             
-            /* Spiegazione clamp(MIN, IDEALE, MAX) */
-            /* Usiamo 'vw' (viewport width) così la scritta si rimpicciolisce con lo schermo */
-            font-size: clamp(2.5rem, 10vw, 6.5rem); 
+            /* Font size dinamico con limite di sicurezza */
+            font-size: clamp(2rem, 8.5vw, 6.5rem); 
+            padding: 0 20px; /* Spazio interno di sicurezza */
+            box-sizing: border-box;
         }
 
         /* Ottimizzazione specifica per smartphone molto stretti */
+        /* Ottimizzazione specifica per smartphone */
         @media (max-width: 600px) {
             h1 {
-                font-size: 9vw; /* Forza la scritta a essere il 9% della larghezza dello schermo */
-                padding: 0 10px; /* Evita che le lettere tocchino i bordi fisici del telefono */
+                /* Ridimensioniamo leggermente per garantire l'unica riga con margine */
+                font-size: 8.5vw; 
+                padding: 0 25px; 
+                letter-spacing: -1px; /* Stringe leggermente i nomi per farli stare comodi */
             }
             header {
-                height: 70vh; /* Accorciamo un po' l'altezza su mobile per vedere subito i contenuti */
+                height: 70vh; 
+                padding-bottom: 5vh; /* Alza un po' la scritta per non farla finire troppo in basso */
+            }
+            .data-header {
+                font-size: 0.8rem;
+                letter-spacing: 3px;
+            }
+            section {
+                padding: 40px 15px; /* Riduce lo spazio tra le sezioni su mobile */
+            }
+            .card {
+                padding: 30px 20px;
             }
         }
 
@@ -257,11 +276,3 @@
 </div>
 </body>
 </html>
-
-
-
-
-
-
-
-
