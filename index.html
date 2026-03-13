@@ -2,26 +2,30 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Andrea & Elenia - 05.07.2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
             --verde-salvia: #556B2F;
             --oro-antico: #8b7355;
-            --crema-vetro: rgba(249, 247, 242, 0.75);
+            --crema-vetro: rgba(249, 247, 242, 0.85);
+        }
+
+        /* FIX: Impedisce il movimento orizzontale del sito su mobile */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            margin: 0;
-            padding: 0;
             color: var(--verde-salvia);
             font-family: 'Playfair Display', serif;
             scroll-behavior: smooth;
-            /* Rimuoviamo il background dal body per spostarlo nel pseudo-elemento */
         }
 
-        /* IL FIX PER IL MOBILE: Creiamo uno strato fisso dietro a tutto */
         body::before {
             content: "";
             position: fixed;
@@ -29,161 +33,122 @@
             left: 0;
             width: 100%;
             height: 100%;
-            /* Usa il nome esatto del tuo file (occhio alle maiuscole!) */
+            /* Abbiamo aggiunto un po' di spazio in alto (top 5%) per non tagliare il logo */
             background: url('Background1.png') no-repeat top center;
             background-size: cover;
-            z-index: -1; /* Lo mette dietro ai contenuti */
-            /* Ottimizzazione per rendere l'immagine nitida */
+            z-index: -1;
             image-rendering: -webkit-optimize-contrast;
         }
 
-        /* Su desktop manteniamo l'effetto fisso, su mobile lo lasciamo naturale per evitare bug */
-        @media (max-width: 768px) {
-            body::before {
-                background-attachment: scroll;
-                /* Spostiamo l'immagine leggermente per centrare meglio il logo su mobile */
-                background-position: center top; 
-            }
-        }
-
-        /* Contenitore principale */
         .main-container {
             width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         header {
-            height: 90vh; /* Lascia molto spazio per vedere il logo originale */
+            height: 85vh;
+            width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             align-items: center;
-            padding-bottom: 10vh;
-        }
-        
-        h1 {
-            font-family: 'Monsieur La Doulaise', cursive;
-            font-weight: 500;
-            margin: 0;
-            color: var(--oro-antico);
-            line-height: 1.2;
-            white-space: nowrap;
-            overflow: visible;
-
-            /* --- MIGLIORAMENTO VISIBILITÀ --- */
-            /* Creiamo un'aura bianca intorno al testo per renderlo leggibile ovunque */
-            text-shadow: 
-                0 0 15px rgba(255, 255, 255, 0.8), 
-                0 0 5px rgba(255, 255, 255, 0.5),
-                1px 1px 2px rgba(139, 115, 85, 0.2); 
-            
-            /* Font size dinamico con limite di sicurezza */
-            font-size: clamp(2rem, 8.5vw, 6.5rem); 
-            padding: 0 20px; /* Spazio interno di sicurezza */
+            text-align: center;
+            padding-bottom: 8vh;
             box-sizing: border-box;
         }
 
-        /* Ottimizzazione specifica per smartphone molto stretti */
-        /* Ottimizzazione specifica per smartphone */
-        @media (max-width: 600px) {
-            h1 {
-                /* Ridimensioniamo leggermente per garantire l'unica riga con margine */
-                font-size: 8.5vw; 
-                padding: 0 25px; 
-                letter-spacing: -1px; /* Stringe leggermente i nomi per farli stare comodi */
-            }
-            header {
-                height: 70vh; 
-                padding-bottom: 5vh; /* Alza un po' la scritta per non farla finire troppo in basso */
-            }
-            .data-header {
-                font-size: 0.8rem;
-                letter-spacing: 3px;
-            }
-            section {
-                padding: 40px 15px; /* Riduce lo spazio tra le sezioni su mobile */
-            }
-            .card {
-                padding: 30px 20px;
-            }
+        h1 {
+            font-family: 'Monsieur La Doulaise', cursive;
+            font-weight: 500;
+            margin: 0 auto;
+            color: var(--oro-antico);
+            line-height: 1.1;
+            /* Forza il testo a restare su una riga riducendosi se necessario */
+            white-space: nowrap;
+            /* Il font-size ora è più piccolo di base per mobile (7.5vw invece di 10vw) */
+            font-size: clamp(1.8rem, 7.5vw, 6rem);
+            width: 90%;
+            text-align: center;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 1px 1px 2px rgba(139, 115, 85, 0.2);
         }
 
         .data-header {
-            font-size: 1rem;
-            letter-spacing: 5px;
+            font-size: clamp(0.8rem, 3vw, 1.2rem);
+            letter-spacing: 4px;
             text-transform: uppercase;
-            margin-top: -10px;
+            margin-top: 10px;
             color: var(--verde-salvia);
         }
 
         section {
-            padding: 80px 20px;
-            max-width: 750px;
-            margin: auto;
+            padding: 60px 15px;
+            width: 100%;
+            max-width: 700px;
+            box-sizing: border-box;
         }
 
         .card {
             background: var(--crema-vetro);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            padding: 50px;
-            border-radius: 4px;
+            padding: 40px 20px;
+            border-radius: 8px;
             border: 1px solid rgba(139, 115, 85, 0.1);
             text-align: center;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
         h2 {
             font-family: 'Monsieur La Doulaise', cursive;
-            font-size: 3.5rem;
+            font-size: 3rem;
             color: var(--oro-antico);
             margin-top: 0;
         }
 
-        /* Form RSVP */
-        form { display: flex; flex-direction: column; gap: 18px; text-align: left; }
-        label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        form { display: flex; flex-direction: column; gap: 15px; text-align: left; }
         input, textarea, select { 
             padding: 12px; 
             border: 1px solid #d4c4a8; 
             background: rgba(255,255,255,0.9);
-            font-family: 'Playfair Display', serif;
+            font-family: inherit;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         button { 
-            background-color: var(--verde-salvia); 
-            color: white; 
-            border: none; 
-            padding: 20px; 
-            cursor: pointer; 
-            text-transform: uppercase; 
-            letter-spacing: 3px;
-            transition: 0.3s;
+            background-color: var(--verde-salvia); color: white; border: none; 
+            padding: 18px; cursor: pointer; text-transform: uppercase; letter-spacing: 2px;
         }
 
-        button:hover { background-color: var(--oro-antico); }
-
-        footer { padding: 40px; text-align: center; font-style: italic; font-size: 0.8rem; }
-
-        @media (max-width: 600px) {
-            header { height: 75vh; }
-            .card { padding: 30px; }
-            h1 { font-size: 4rem; }
+        /* --- OTTIMIZZAZIONE MOBILE AGGRESSIVA --- */
+        @media (max-width: 480px) {
+            header {
+                height: 75vh;
+            }
+            h1 {
+                font-size: 8vw; /* Leggermente più grande per leggibilità ma limitato */
+            }
+            body::before {
+                /* Sposta lo sfondo un po' più in basso per salvare il monogramma AE dai menu del browser */
+                background-position: center 20px;
+            }
         }
     </style>
 </head>
 <body>
 
 <div class="main-container">
-
     <header>
         <h1>Andrea & Elenia</h1>
         <div class="data-header">05 Luglio 2026</div>
     </header>
 
-    <section>
+    <section id="sogno">
         <div class="card">
             <h2>Il Nostro Sogno</h2>
-            <p>Siamo felici di invitarvi a condividere con noi la felicità di questo giorno. Vi preghiamo di indicarci la vostra presenza ed eventuali allergeni, noi non vediamo l'ora! </p>
+            <p>Siamo felici di invitarvi a condividere con noi la felicità di questo giorno. Vi preghiamo di indicarci la vostra presenza ed eventuali allergeni, noi non vediamo l'ora!</p>
         </div>
     </section>
 
@@ -193,7 +158,7 @@
             <h3>Masseria Mavugliola</h3>
             <p>S.c 35, Contrada Mavugliola, 156<br>Locorotondo (BA)</p>
             <p>Ore 18:00</p>
-            <a href="https://www.google.com/maps/place/Masseria+Mav%C3%B9gliola/@40.750938,17.3627,17z/data=!3m1!4b1!4m6!3m5!1s0x13465279cd985a47:0x939b85799d4c4200!8m2!3d40.750938!4d17.3627!16s%2Fg%2F1tq134kv?entry=ttu&g_ep=EgoyMDI2MDMxMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" style="color: var(--oro-antico); text-decoration: none; border-bottom: 1px solid;">Mappa</a>
+            <a href="https://maps.google.com/?q=Masseria+Mavugliola+Locorotondo" target="_blank" style="color: var(--oro-antico); text-decoration: none; border-bottom: 1px solid;">Apri Mappa</a>
         </div>
     </section>
 
@@ -201,7 +166,6 @@
         <div class="card">
             <h2>Conferma</h2>
             <form id="my-form" action="https://formspree.io/f/mreyknza" method="POST">
-                
                 <label>Nome e Cognome</label>
                 <input type="text" name="Nome_Invitati" placeholder="Es. Andrea e Elenia" required>
                 
@@ -213,66 +177,50 @@
             
                 <label>Note, Allergie o Intolleranze</label>
                 <textarea name="Note_e_Allergie" rows="3" placeholder="Es. 1 Celiaco, 1 Vegetariano..."></textarea>
-
-                <input type="hidden" name="_next" value="https://andrea-elenia.github.io/Andrea-Elenia-5Luglio/">
-
                 <input type="text" name="_gotcha" style="display:none">
-                
                 <button type="submit" id="submit-button">Invia Conferma</button>
             </form>
-
             <div id="success-message" style="display:none; padding: 20px;">
-                <h3 style="font-family: 'Monsieur La Doulaise', cursive; font-size: 3rem; color: var(--oro-antico);">Grazie di cuore!</h3>
-                <p>La vostra risposta è stata registrata correttamente.</p>
+                <h3 style="font-family: 'Monsieur La Doulaise', cursive; font-size: 2.5rem; color: var(--oro-antico);">Grazie di cuore!</h3>
+                <p>La vostra risposta è stata registrata.</p>
             </div>
         </div>
     </section>
 
-    <script>
-          var form = document.getElementById("my-form");
-          
-          async function handleSubmit(event) {
-            event.preventDefault();
-            var status = document.getElementById("success-message");
-            var button = document.getElementById("submit-button");
-            var data = new FormData(event.target);
-            
-            button.innerHTML = "Invio in corso...";
-            button.disabled = true;
-        
-            fetch(event.target.action, {
-              method: form.method,
-              body: data,
-              headers: {
-                  'Accept': 'application/json'
-              }
-            }).then(response => {
-              if (response.ok) {
-                form.style.display = "none"; // Nasconde il modulo
-                status.style.display = "block"; // Mostra il messaggio di successo
-              } else {
-                response.json().then(data => {
-                  if (Object.hasOwn(data, 'errors')) {
-                    alert(data["errors"].map(error => error["message"]).join(", "));
-                  } else {
-                    alert("Oops! C'è stato un problema nell'invio. Riprova più tardi.");
-                  }
-                })
-              }
-            }).catch(error => {
-              alert("Errore di connessione. Controlla la tua rete.");
-            }).finally(() => {
-                button.innerHTML = "Invia Conferma";
-                button.disabled = false;
-            });
-          }
-          form.addEventListener("submit", handleSubmit)
-    </script>
-    
-    <footer>
-        A & E | 5 Luglio 2026.
+    <footer style="padding: 40px; text-align: center; font-style: italic;">
+        A & E | 5 Luglio 2026
     </footer>
-
 </div>
+
+<script>
+    var form = document.getElementById("my-form");
+    async function handleSubmit(event) {
+        event.preventDefault();
+        var status = document.getElementById("success-message");
+        var button = document.getElementById("submit-button");
+        var data = new FormData(event.target);
+        button.innerHTML = "Invio...";
+        button.disabled = true;
+        fetch(event.target.action, {
+            method: form.method,
+            body: data,
+            headers: { 'Accept': 'application/json' }
+        }).then(response => {
+            if (response.ok) {
+                form.style.display = "none";
+                status.style.display = "block";
+            } else {
+                alert("Errore nell'invio. Riprova.");
+            }
+        }).catch(error => {
+            alert("Errore di connessione.");
+        }).finally(() => {
+            button.innerHTML = "Invia Conferma";
+            button.disabled = false;
+        });
+    }
+    form.addEventListener("submit", handleSubmit);
+</script>
+
 </body>
 </html>
