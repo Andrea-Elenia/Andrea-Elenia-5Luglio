@@ -15,11 +15,35 @@
         body {
             margin: 0;
             padding: 0;
-            background: url('./Background.png') no-repeat top center fixed;
-            background-size: cover;
             color: var(--verde-salvia);
             font-family: 'Playfair Display', serif;
             scroll-behavior: smooth;
+            /* Rimuoviamo il background dal body per spostarlo nel pseudo-elemento */
+        }
+
+        /* IL FIX PER IL MOBILE: Creiamo uno strato fisso dietro a tutto */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Usa il nome esatto del tuo file (occhio alle maiuscole!) */
+            background: url('Background.png') no-repeat top center;
+            background-size: cover;
+            z-index: -1; /* Lo mette dietro ai contenuti */
+            /* Ottimizzazione per rendere l'immagine nitida */
+            image-rendering: -webkit-optimize-contrast;
+        }
+
+        /* Su desktop manteniamo l'effetto fisso, su mobile lo lasciamo naturale per evitare bug */
+        @media (max-width: 768px) {
+            body::before {
+                background-attachment: scroll;
+                /* Spostiamo l'immagine leggermente per centrare meglio il logo su mobile */
+                background-position: center top; 
+            }
         }
 
         /* Contenitore principale */
@@ -166,6 +190,7 @@
 </div>
 </body>
 </html>
+
 
 
 
