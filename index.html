@@ -61,15 +61,31 @@
         }
 
         h1 {
-            /* Questo è il font simile al logo AE */
             font-family: 'Monsieur La Doulaise', cursive;
-            font-size: clamp(8.5rem, 12vw, 6.5rem);
             font-weight: 500;
             margin: 0;
             color: var(--oro-antico);
-            /* Un'ombra leggerissima per staccare dal fondo senza appesantire */
             text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
             line-height: 1.2;
+
+            /* --- IL FIX PER L'UNICA RIGA --- */
+            white-space: nowrap;      /* Impedisce categoricamente di andare a capo */
+            overflow: visible;        /* Assicura che i riccioli del font non vengano tagliati */
+            
+            /* Spiegazione clamp(MIN, IDEALE, MAX) */
+            /* Usiamo 'vw' (viewport width) così la scritta si rimpicciolisce con lo schermo */
+            font-size: clamp(2.5rem, 10vw, 6.5rem); 
+        }
+
+        /* Ottimizzazione specifica per smartphone molto stretti */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 9vw; /* Forza la scritta a essere il 9% della larghezza dello schermo */
+                padding: 0 10px; /* Evita che le lettere tocchino i bordi fisici del telefono */
+            }
+            header {
+                height: 70vh; /* Accorciamo un po' l'altezza su mobile per vedere subito i contenuti */
+            }
         }
 
         .data-header {
@@ -190,6 +206,7 @@
 </div>
 </body>
 </html>
+
 
 
 
