@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Andrea ed Elenia - 05.07.2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Meie+Script&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
             --verde-salvia: #556B2F;
@@ -60,29 +60,23 @@
         }
 
         h1 {
-            /* Prova 'Meie Script' o 'Pinyon Script' */
-            font-family: 'Meie Script', cursive; 
-            font-weight: 400;
+            font-family: 'Monsieur La Doulaise', cursive;
+            font-weight: 500;
             margin: 0 auto;
             color: var(--oro-antico);
             line-height: 1.1;
-            white-space: nowrap;
+            white-space: nowrap; /* Fondamentale per l'unica riga */
             
-            /* Dimensione fluida */
-            font-size: clamp(3rem, 15vw, 7rem); 
+            /* --- AUMENTO GRANDEZZA --- */
+            /* Minimo 2.8rem (invece di 1.8), Ideale 13vw (invece di 7.5), Massimo 6.5rem */
+            font-size: clamp(2.8rem, 13vw, 6.5rem); 
             
             width: 100%;
             text-align: center;
-
-            /* TRUCCO PER IL FONT SOTTILE: 
-               Riduciamo l'ombra per renderlo più 'filo di ferro' come l'invito */
-            text-shadow: 0.5px 0.5px 1px rgba(139, 115, 85, 0.3);
-            
-            padding: 0 10px;
+            /* Ombra più intensa per dare "corpo" alle lettere sottili */
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.9), 1px 1px 3px rgba(139, 115, 85, 0.3);
+            padding: 0 10px; /* Ridotto il padding laterale per dare più spazio alle lettere */
             box-sizing: border-box;
-            
-            /* Aggiungiamo un po' di spazio tra i nomi come nell'invito */
-            letter-spacing: 2px;
         }
 
         .data-header {
@@ -195,8 +189,9 @@
                 padding-bottom: 12vh; /* Alza la scritta per allontanarla dal bordo inferiore */
             }
             h1 {
-                font-size: 13vw; 
-                letter-spacing: 1px;
+                /* Su smartphone molto piccoli, usiamo il 14% della larghezza dello schermo */
+                font-size: 14vw; 
+                letter-spacing: -0.5px; /* Compressione minima per guadagnare spazio */
             }
             .data-header {
                 font-size: 1rem; /* Data leggermente più grande per equilibrio */
@@ -321,5 +316,4 @@
 
 </body>
 </html>
-
 
