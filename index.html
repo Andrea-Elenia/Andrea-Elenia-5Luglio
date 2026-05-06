@@ -212,6 +212,25 @@
             color: var(--verde-salvia);
         }
 
+        /* Stile per la casella numerica */
+        .qty-input {
+            width: 50px;
+            padding: 8px !important; /* !important per sovrascrivere lo stile generale degli input */
+            border: 1px solid var(--oro-antico) !important;
+            border-radius: 4px;
+            text-align: center;
+            margin-left: 10px;
+            background: white;
+            color: var(--verde-salvia);
+            font-weight: bold;
+        }
+        
+        /* Rimuove le freccine standard del numero per un look più pulito (opzionale) */
+        .qty-input::-webkit-inner-spin-button, 
+        .qty-input::-webkit-outer-spin-button { 
+            opacity: 1;
+        }
+
         @media (max-width: 600px) {
             .btn-photo { width: 100%; box-sizing: border-box; }
 
@@ -304,21 +323,33 @@
 
                  <label>Preferenza Menù</label>
                 <div class="options-group">
-                    <label class="option-item">
-                        <input type="radio" name="Preferenza_Menu" value="Pesce" checked>
-                        <span class="option-text">Menù base (primo: Pesce)</span>
-                    </label>
+
+                    <!-- Opzione primo -->
+                    <div class="option-item">
+                        <label class="option-left">
+                            <input type="checkbox" name="Primo_Pesce" value="Primo Pesce">
+                            <span class="option-text">Menù base (primo: Pesce)</span>
+                        </label>
+                        <input type="number" name="Quantità_Pesce" class="qty-input" min="0" max="10" placeholder="0">
+                    </div>
                 
-                    <label class="option-item">
-                        <input type="radio" name="Preferenza_Menu" value="Alternativa_Vegetariana">
-                        <span class="option-text">Secondo (Pesce/Carne)</span>
-                    </label>
-                    
-                    <label class="option-item">
-                        <input type="radio" name="Preferenza_Menu" value="Bambini">
-                        <span class="option-text">Alternativa (Vegetariana)</span>
-                    </label>
-                </div>
+                    <!-- Opzione secondo -->
+                    <div class="option-item">
+                        <label class="option-left">
+                            <input type="checkbox" name="Secondo" value="Secondo: Carne/Pesce">
+                            <span class="option-text">Secondo (Pesce/Carne)</span>
+                        </label>
+                        <input type="number" name="Quantità_Carne" class="qty-input" min="0" max="10" placeholder="0">
+                    </div>
+                
+                    <!-- Opzione Vegetariana -->
+                    <div class="option-item">
+                        <label class="option-left">
+                            <input type="checkbox" name="Alternativa" value="Alternativa Vegetariana">
+                            <span class="option-text">Menù Vegetariano</span>
+                        </label>
+                        <input type="number" name="Quantità_Vegetariano" class="qty-input" min="0" max="10" placeholder="0">
+                    </div>
             
                 <label>Note, Allergie o Intolleranze</label>
                 <textarea name="Note_e_Allergie" rows="3" placeholder="Es. 1 Celiaco, 1 Vegetariano, 1 Intollerante al Lattosio..."></textarea>
