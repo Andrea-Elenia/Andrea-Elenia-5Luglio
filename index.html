@@ -396,16 +396,23 @@
 
     
 <script>
-    function toggleMenu() {
-        var risposta = document.getElementById("risposta-partecipazione").value;
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // --- PARTE 1: GESTIONE MOSTRA/NASCONDI MENU ---
+        var selectPartecipazione = document.getElementById("risposta-partecipazione");
         var sezioneMenu = document.getElementById("sezione-menu");
-        if (risposta === "No") {
-            sezioneMenu.style.display = "none";
-        } else {
-            sezioneMenu.style.display = "block";
-        }
+    
+        function toggleMenu() {
+            if (selectPartecipazione.value === "No") {
+                sezioneMenu.style.display = "none";
+            } else {
+                sezioneMenu.style.display = "block";
+            }
     }
-    // Eseguiamo al caricamento per sicurezza
+
+    // Ascolta il cambiamento sulla select
+    selectPartecipazione.addEventListener("change", toggleMenu);
+    // Esegui subito all'avvio per impostare lo stato iniziale
     toggleMenu();
     
     var form = document.getElementById("my-form");
