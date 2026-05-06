@@ -175,9 +175,43 @@
         .grid-item:hover img {
             transform: scale(1.1); /* Effetto zoom al passaggio del mouse */
         }
+        .options-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 5px;
+        }
+        
+        .option-item {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid #d4c4a8;
+            padding: 12px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .option-item:hover {
+            border-color: var(--verde-salvia);
+            background: white;
+        }
+        
+        /* Nascondiamo il radio button originale e usiamo quello del browser con il vostro colore */
+        .option-item input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            cursor: pointer;
+            accent-color: var(--verde-salvia); /* Colore verde salvia per il pallino */
+        }
+        
+        .option-text {
+            font-size: 0.95rem;
+            color: var(--verde-salvia);
+        }
 
-        /* --- OTTIMIZZAZIONE MOBILE AGGRESSIVA --- */
-        /* --- OTTIMIZZAZIONE SPECIFICA PER MOBILE --- */
         @media (max-width: 600px) {
             .btn-photo { width: 100%; box-sizing: border-box; }
 
@@ -267,6 +301,24 @@
                     <option value="Sì">Sì, verremo a festeggiare!</option>
                     <option value="No">Purtroppo non potremo esserci</option>
                 </select>
+
+                 <label>Preferenza Menù</label>
+                <div class="options-group">
+                    <label class="option-item">
+                        <input type="radio" name="Preferenza_Menu" value="Pesce" checked>
+                        <span class="option-text">Menù base (primo: Pesce)</span>
+                    </label>
+                
+                    <label class="option-item">
+                        <input type="radio" name="Preferenza_Menu" value="Alternativa_Vegetariana">
+                        <span class="option-text">Secondo (Pesce/Carne)</span>
+                    </label>
+                    
+                    <label class="option-item">
+                        <input type="radio" name="Preferenza_Menu" value="Bambini">
+                        <span class="option-text">Alternativa (Vegetariana)</span>
+                    </label>
+                </div>
             
                 <label>Note, Allergie o Intolleranze</label>
                 <textarea name="Note_e_Allergie" rows="3" placeholder="Es. 1 Celiaco, 1 Vegetariano, 1 Intollerante al Lattosio..."></textarea>
