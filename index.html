@@ -321,36 +321,29 @@
                     <option value="No">Purtroppo non potremo esserci</option>
                 </select>
 
-                 <label>Preferenza Menù</label>
-                <div class="options-group">
-
-                    <!-- Opzione primo -->
-                        <label class="option-left">
-                            <input type="checkbox" name="Primo_Pesce" value="Primo Pesce">
-                            <span class="option-text">Menù base (primo: Pesce)</span>
-                        </label>
-                        <input type="number" name="Quantità_Pesce" class="qty-input" min="0" max="10" placeholder="0">
+                <!-- Questo contenitore sparirà se selezionano "No" -->
+                <div id="sezione-menu">
+                    <label style="margin-top: 15px;">Preferenze Menù</label>
+                    <div class="menu-grid">
+                        <div class="menu-row">
+                            <span>Primo Pesce</span>
+                            <input type="number" name="Menu_Pesce" min="0" value="0" class="qty-simple">
+                        </div>
+                        <div class="menu-row">
+                            <span>Secondo Pesce/Carne</span>
+                            <input type="number" name="Menu_Carne" min="0" value="0" class="qty-simple">
+                        </div>
+                        <div class="menu-row">
+                            <span>Primo Vegetariano</span>
+                            <input type="number" name="Primo_Vegetariano" min="0" value="0" class="qty-simple">
+                        </div>
+                        <div class="menu-row">
+                            <span>Secondo Vegetariano</span>
+                            <input type="number" name="Secondo_Bambini" min="0" value="0" class="qty-simple">
+                        </div>
+                    </div>
+                </div>
                 
-                    <!-- Opzione secondo -->
-                        <label class="option-left">
-                            <input type="checkbox" name="Secondo" value="Secondo: Carne/Pesce">
-                            <span class="option-text">Secondo (Pesce/Carne)</span>
-                        </label>
-                        <input type="number" name="Quantità_Carne" class="qty-input" min="0" max="10" placeholder="0">
-                
-                    <!-- Opzione Vegetariana -->
-                        <label class="option-left">
-                            <input type="checkbox" name="Primo Vegetariano" value="primo Vegetariana">
-                            <span class="option-text">Primo Vegetariano</span>
-                        </label>
-                        <input type="number" name="Quantità_Primo_Vegetariano" class="qty-input" min="0" max="10" placeholder="0">
-
-                        <label class="option-left">
-                            <input type="checkbox" name="Alternativa" value="Alternativa Vegetariana">
-                            <span class="option-text">Menù Vegetariano</span>
-                        </label>
-                        <input type="number" name="Quantità_Vegetariano" class="qty-input" min="0" max="10" placeholder="0">
-            
                 <label>Note, Allergie o Intolleranze</label>
                 <textarea name="Note_e_Allergie" rows="3" placeholder="Es. 1 Celiaco, 1 Vegetariano, 1 Intollerante al Lattosio..."></textarea>
                 <input type="text" name="_gotcha" style="display:none">
@@ -366,8 +359,12 @@
     <footer style="padding: 40px; text-align: center; font-style: italic;">
         A & E | 5 Luglio 2026
     </footer>
+
+    
 </div>
 
+
+    
 <script>
     var form = document.getElementById("my-form");
     async function handleSubmit(event) {
@@ -396,6 +393,18 @@
         });
     }
     form.addEventListener("submit", handleSubmit);
+
+    function toggleMenu() {
+        var risposta = document.getElementById("risposta-partecipazione").value;
+        var sezioneMenu = document.getElementById("sezione-menu");
+        if (risposta === "No") {
+            sezioneMenu.style.display = "none";
+        } else {
+            sezioneMenu.style.display = "block";
+        }
+    }
+    // Eseguiamo al caricamento per sicurezza
+    toggleMenu();
 </script>
 
 </body>
