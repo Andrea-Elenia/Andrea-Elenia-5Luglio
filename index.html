@@ -398,6 +398,63 @@
 <script>
 
     document.addEventListener("DOMContentLoaded", function() {
+        // 1. Riferimenti agli elementi
+        var selectPartecipazione = document.getElementById("risposta-partecipazione");
+        var sezioneMenu = document.getElementById("sezione-menu");
+        var form = document.getElementById("my-form");
+        var status = document.getElementById("success-message");
+        var button = document.getElementById("submit-button");
+    
+        // 2. Funzione per mostrare/nascondere il menu
+        function toggleMenu() {
+            if (selectPartecipazione && sezioneMenu) {
+                if (selectPartecipazione.value === "No") {
+                    sezioneMenu.style.display = "none";
+                } else {
+                    sezioneMenu.style.display = "block";
+                }
+            }
+        }
+    
+        // 3. Funzione per l'invio del form
+        async function handleSubmit(event) {
+            event.preventDefault();
+            
+            var data = new FormData(event.target);
+            button.innerHTML = "Invio...";
+            button.disabled = true;
+    
+            fetch(event.target.action, {
+                method: form.method,
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (response.ok) {
+                    form.style.display = "none";
+                    status.style.display = "block"; // Questo mostra il messaggio finale
+                } else {
+                    alert("Errore nell'invio. Riprova.");
+                }
+            }).catch(error => {
+                alert("Errore di connessione.");
+            }).finally(() => {
+                button.innerHTML = "Invia Conferma";
+                button.disabled = false;
+            });
+        }
+    
+        // 4. Attivazione degli eventi
+        if (selectPartecipazione) {
+            selectPartecipazione.addEventListener("change", toggleMenu);
+            toggleMenu(); // Esecuzione immediata al caricamento
+        }
+    
+        if (form) {
+            form.addEventListener("submit", handleSubmit);
+        }
+    });
+    
+    /*document.addEventListener("DOMContentLoaded", function() {
         // --- PARTE 1: GESTIONE MOSTRA/NASCONDI MENU ---
         var selectPartecipazione = document.getElementById("risposta-partecipazione");
         var sezioneMenu = document.getElementById("sezione-menu");
@@ -441,7 +498,7 @@
             button.disabled = false;
         });
     }
-    form.addEventListener("submit", handleSubmit);
+    form.addEventListener("submit", handleSubmit);*/
 </script>
 
 </body>
