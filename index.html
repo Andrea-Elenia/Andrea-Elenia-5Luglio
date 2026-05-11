@@ -350,8 +350,10 @@
                     <option value="Sì" selected>Sì, verremo a festeggiare!</option>
                     <option value="No">Purtroppo non potremo esserci</option>
                 </select>
-
-                <!-- Questo contenitore sparirà se selezionano "No" -->
+                
+                <label>Note, Allergie o Intolleranze</label>
+                <textarea name="Note_e_Allergie" rows="3" placeholder="Es. 1 Celiaco, 1 Vegetariano, 1 Intollerante al Lattosio..."></textarea>
+                                <!-- Questo contenitore sparirà se selezionano "No" -->
                 <div id="sezione-menu" style="display: block;">
                     <label style="margin-top: 15px;">Preferenze Menù</label>
                     <div class="menu-grid">
@@ -360,22 +362,15 @@
                             <input type="number" name="Primo Pesce" min="0" value="0" class="qty-simple">
                         </div>
                         <div class="menu-row">
-                            <span>Secondo Pesce/Carne</span>
-                            <input type="number" name="Secondo Carne-Pesce" min="0" value="0" class="qty-simple">
-                        </div>
-                        <div class="menu-row">
-                            <span>Primo Vegetariano</span>
+                            <span>Alternativa Primo</span>
                             <input type="number" name="Primo Vegetariano" min="0" value="0" class="qty-simple">
                         </div>
                         <div class="menu-row">
-                            <span>Secondo Vegetariano</span>
-                            <input type="number" name="Secondo Vegetariano" min="0" value="0" class="qty-simple">
+                            <span>Menù Vegetariano</span>
+                            <input type="number" name="Menù Vegetariano" min="0" value="0" class="qty-simple">
                         </div>
                     </div>
                 </div>
-                
-                <label>Note, Allergie o Intolleranze</label>
-                <textarea name="Note_e_Allergie" rows="3" placeholder="Es. 1 Celiaco, 1 Vegetariano, 1 Intollerante al Lattosio..."></textarea>
                 <input type="text" name="_gotcha" style="display:none">
                 <button type="submit" id="submit-button">Invia Conferma</button>
             </form>
